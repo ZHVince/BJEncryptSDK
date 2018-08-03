@@ -10,4 +10,15 @@ s.platform     = :ios
 s.source       = { :git => "https://github.com/ZHVince/BJEncryptSDK.git", :tag => "#{s.version}" }
 s.source_files  = "**", "**/*.{h,m}"
 s.exclude_files = ""
+
+non_arc_files = 'JSONKit.m'//这是需要添加mrc标识的文件，为相对路径
+
+s.exclude_files = non_arc_files//在工程中首先排除一下
+
+s.subspec 'no-arc' do |sp|//一下就是子设置，为需要添加mrc标识的文件进行设置
+
+sp.source_files = non_arc_files
+
+sp.requires_arc = false
+
 end
